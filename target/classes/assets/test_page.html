@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="application/javascript">
+        var token = '';
+        $.ajax({
+            url: '/api/v1/test/firebase/auth',
+            type: 'GET',
+            data: {},
+            async: false,
+            success: function (data) {
+                token = data.key;
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+                alert('Something went wrong!');
+            }
+        });
+        var fireBase = new Firebase("https://glowing-inferno-7180.firebaseio.com/users/1");
+
+        fireBase.authWithCustomToken(token, function (error, authData) {
+            if (error) {
+                console.log("Authentication Failed!", error, authData);
+            } else {
+                console.log("Authenticated successfully with payload:", authData);
+                fireBase.on('child_added', function (dataSnapshot) {
+                    $('#data').append('<span style="display: block;">' + dataSnapshot.val() + '</span>');
+                }, function (err) {
+                    alert("error " + err);
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+<div id="data">
+
+</div>
+</body>
+</html>

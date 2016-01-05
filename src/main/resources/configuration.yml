@@ -1,0 +1,4 @@
+server:
+  applicationContextPath: /
+swagger:
+  resourcePackage: application.resources
