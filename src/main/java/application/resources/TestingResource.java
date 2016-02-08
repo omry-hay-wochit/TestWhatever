@@ -7,7 +7,6 @@ import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.security.token.TokenGenerator;
-import com.pubnub.api.Pubnub;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 
@@ -26,11 +25,6 @@ import java.util.Random;
 @Produces(MediaType.APPLICATION_JSON)
 public class TestingResource
 {
-    private static final String publishKey = "pub-c-e94ce8de-5837-4a8b-a56f-ca462f5ed2c9";
-    private static final String subscribeKey = "sub-c-36dba3dc-7b0b-11e5-ad8e-02ee2ddab7fe";
-    private static final String secretKey = "sec-c-ZDE4MjhkZGUtYTkxMS00MWJhLTk1ZWUtYzVkMmE1YzgzY2E1";
-    private static final Pubnub pubnub = new Pubnub(publishKey, subscribeKey, secretKey);
-
     private static final String fireBaseSecretKey = "0GgopQEBikNCfeqcWFO6CVQRXyWzaN5iJckgdEJS";
     private static final Firebase fireBase = new Firebase("https://glowing-inferno-7180.firebaseio.com/");
 
